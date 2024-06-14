@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logitech from "../../../public/contents/headset.webp";
-import Button from "../Button/button";
+// import Button from "../Button/button";
 import CusButton from "../Button/customButton";
+import { Button } from "@mui/material";
 
 const ProductCard = () => {
   const [isWishListed, setWishListed] = useState(false);
   return (
     <Link to="/product">
-      <CusButton noPadding={true} className="w-[154px] h-fit rounded-lg bg-white p-2 cursor-pointer">
+      <Button color="primary" sx={{ fontFamily: 'inherit', letterSpacing: '0px', textTransform: 'none', color: 'inherit', width: 154, height: "fit-content", borderRadius: 10, padding: 2, display: "flex", flexDirection: "column" }}>
         <div className="w-full aspect-square">
           <img
             src={logitech}
@@ -16,7 +17,7 @@ const ProductCard = () => {
             className="w-full h-full object-contain"
           />
         </div>
-        <div className="flex flex-col text-start">
+        <div className="flex flex-col text-start text-black">
           <h3 className="">Headset gaming</h3>
           <p className="font-bold mb-2">Rp 500.000,00</p>
           <div className="flex items-center justify-between">
@@ -37,7 +38,7 @@ const ProductCard = () => {
             </div> */}
           </div>
         </div>
-      </CusButton>
+      </Button>
     </Link>
   );
 };

@@ -37,7 +37,8 @@ const Button = ({
     <button
       data-cursor="-hidden"
       ref={objectHover}
-      onMouseDown={handleMouseDown}
+      // onMouseDown={handleMouseDown}
+      onMouseOver={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
       className={`w-fit h-fit relative overflow-hidden ${

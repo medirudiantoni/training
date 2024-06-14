@@ -1,25 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Button from "../Button/button";
-import CusButton from "../Button/customButton";
+import { Button } from "@mui/material";
 
-const NavbarList = ({title, to, sticker, onClose }) => (
-  <Link to={to && to}>
-    <CusButton
-      noRounded={true}
-      className="w-full py-3 px-5 hover:bg-slate-400/10"
-      className2="w-full flex items-center justify-between"
-      onClick={onClose}
+const NavbarButton = ({ title, to, sticker, onClose }) => {
+  const navigate = useNavigate();
+  return (
+    <Button
+      sx={{
+        fontFamily: "inherit",
+        fontSize: "inherit",
+        letterSpacing: "0px",
+        textTransform: "none",
+        color: "inherit",
+        width: "100%",
+        padding: "12px 20px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+      }}
+      onClick={() => {
+        navigate(to ? to : false);
+        onClose();
+      }}
     >
       <div className="flex items-center gap-1.5">
         <p>{sticker}</p>
         <p>{title}</p>
       </div>
       <div>{"➡️"}</div>
-    </CusButton>
-  </Link>
-);
+    </Button>
+  );
+};
 
 const Navbar = ({ onClose }) => {
   return (
@@ -41,12 +53,26 @@ const Navbar = ({ onClose }) => {
         </div>
       </div>
       <div className="flex flex-col">
-        <NavbarList title={'Home'} to={'/'} sticker={'🏠'} onClose={onClose} />
-        <NavbarList title={'Products'} to={'/products'} sticker={'📦'} onClose={onClose} />
-        <NavbarList title={'Notifications'} to={'/notifications'} sticker={'🆕'} onClose={onClose} />
-        <NavbarList title={'Cart'} to={'/cart'} sticker={'🛒'} onClose={onClose} />
-        <NavbarList title={'Wishlist'} sticker={'💖'} onClose={onClose} />
-
+        <NavbarButton title={"Homepage"} to={"/"} sticker={"🏠"} onClose={onClose} />
+        <NavbarButton
+          title={"Products"}
+          to={"/products"}
+          sticker={"📦"}
+          onClose={onClose}
+        />
+        <NavbarButton
+          title={"Notifications"}
+          to={"/notifications"}
+          sticker={"🆕"}
+          onClose={onClose}
+        />
+        <NavbarButton
+          title={"Cart"}
+          to={"/cart"}
+          sticker={"🛒"}
+          onClose={onClose}
+        />
+        <NavbarButton title={"Wishlist"} sticker={"💖"} onClose={onClose} />
       </div>
     </motion.div>
   );

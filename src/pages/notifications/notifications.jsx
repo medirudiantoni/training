@@ -1,10 +1,10 @@
+import { Button } from '@mui/material'
 import React from 'react'
-import Button from '../../components/Button/button'
 
 const Notifications = () => {
   return (
     <div className="p-5 pt-20 text-center">
-      <Button outlined={true}>hello</Button>
+      <Button sx={{ fontFamily: 'inherit', letterSpacing: '0px', textTransform: 'none', color: 'inherit' }}>hello</Button>
     </div>
   )
 }
