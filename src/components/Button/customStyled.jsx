@@ -7,6 +7,7 @@ const CusButton = styled(Button)(({}) => ({
   fontSize: 'inherit',
   letterSpacing: '0px',
   textTransform: 'none',
+  borderRadius: 4,
 }));
 
 

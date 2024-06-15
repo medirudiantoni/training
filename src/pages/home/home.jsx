@@ -27,7 +27,7 @@ const Home = () => {
           />
         </div>
         <ColorButton variant="contained" onClick={() => navigate("/products")} sx={{ width: "100%", height: "fit-content", textAlign: "center", padding: 1, borderRadius: 4, overflow: "hidden", margin: "10px 0", boxShadow: 0 }}>
-          See Products
+          <p className="text-white">See Products</p>
         </ColorButton>
       </div>
     </div>

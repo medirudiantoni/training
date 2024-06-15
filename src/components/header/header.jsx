@@ -7,7 +7,7 @@ import CusButton from "../Button/customStyled";
 const HeaderButton = ({children, onClick}) => {
   return (
     <div className="w-8 h-8 rounded-full flex items-center justify-center relative overflow-hidden">
-      <CusButton sx={{ borderRadius: 10, padding: "10px 2px", position: "absolute" }} onClick={onClick}>
+      <CusButton sx={{ borderRadius: 10, padding: "10px 2px", position: "absolute", zIndex: 1 }} onClick={onClick}>
           {children}
         </CusButton>
     </div>
