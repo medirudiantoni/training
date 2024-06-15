@@ -1,10 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Button from "../../components/Button/button";
+import { useNavigate } from "react-router-dom";
+import CusButton from "../../components/Button/customStyled";
+import { styled } from '@mui/material/styles';
+
+const ColorButton = styled(CusButton)(({ theme }) => ({
+  color: theme.palette.getContrastText("#10b981"),
+  backgroundColor: "#10b981",
+  '&:hover': {
+    backgroundColor: "#10b981",
+  },
+}));
+
 const dummyImg =
   "https://images.unsplash.com/photo-1534237710431-e2fc698436d0?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 const Home = () => {
+  const navigate = useNavigate()
   return (
     <div className="pt-14">
       <div className="p-5">
@@ -15,10 +26,9 @@ const Home = () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <Link to={"/products"}>
-          {/* <div className="my-3 pt-1.5 pb-2 px-4 rounded-md bg-emerald-600 text-white font-semibold text-center hover:bg-emerald-700 active:bg-emerald-950">See Products</div> */}
-          <Button className={'w-full flex justify-center my-2 items-center'} color="success">See Products</Button>
-        </Link>
+        <ColorButton variant="contained" onClick={() => navigate("/products")} sx={{ width: "100%", height: "fit-content", textAlign: "center", padding: 1, borderRadius: 4, overflow: "hidden", margin: "10px 0", boxShadow: 0 }}>
+          See Products
+        </ColorButton>
       </div>
     </div>
   );

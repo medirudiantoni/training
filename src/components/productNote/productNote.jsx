@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "../Button/button";
+import CusButton from "../Button/customStyled";
 
 const ProductNote = ({ onClose, onDelete, noteData, data }) => {
   const [isNoteText, setNoteText] = useState(data);
@@ -31,18 +32,26 @@ const ProductNote = ({ onClose, onDelete, noteData, data }) => {
         </div>
         {isNoteText && (
           <div className="w-full h-fit flex gap-2 items-center justify-between mt-5">
-            <Button
-              className="py-2 px-4 flex-1 rounded-md border-2 border-red-500 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white"
-              onClick={onDelete}
-            >
-              👎 Hapus
-            </Button>
-            <Button
-              className="py-2 px-4 flex-1 rounded-md border-2 active:bg-blue-100"
-              onClick={handleSaveNote}
-            >
-              👌 Save
-            </Button>
+            <div className="flex-1 rounded-md">
+              <CusButton
+                color="error"
+                variant="contained"
+                onClick={onDelete}
+                sx={{ width: "100%" }}
+              >
+                👎 Hapus
+              </CusButton>
+            </div>
+            <div className="flex-1 rounded-md">
+              <CusButton
+                color="success"
+                variant="contained"
+                onClick={handleSaveNote}
+                sx={{ width: "100%" }}
+              >
+                👌 Save
+              </CusButton>
+            </div>
           </div>
         )}
       </div>

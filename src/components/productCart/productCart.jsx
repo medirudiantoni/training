@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProductNote from "../productNote/productNote";
-import Button from "../Button/button";
+import CusButton from "../Button/customStyled";
 
 const ProductCart = ({ img }) => {
   const [count, setCount] = useState(0);
@@ -23,7 +23,7 @@ const ProductCart = ({ img }) => {
   };
 
   const handleDeleteData = () => {
-    const trueDelete = confirm('Apakah anda yakin?');
+    const trueDelete = confirm("Apakah anda yakin?");
     trueDelete ? setNoteData("") : false;
     setIsNote(false);
   };
@@ -51,27 +51,26 @@ const ProductCart = ({ img }) => {
             <p className="font-bold">Rp 1.500.000,00</p>
           </div>
           <div className="w-full h-fit flex gap-2 items-center justify-between">
-            <Button
-              noRounded={true}
-              className="py-2 px-4 border-2 rounded-full"
-              onClick={() => setIsNote(true)}
-            >
-              📝
-            </Button>
-            <div className="pt-[1px] pb-[2px] px-1.5 rounded-full border-2 flex gap-1.5 items-center justify-between">
-              <button
-                className="p-1 text-xl font-mono font-bold"
-                onClick={handleMinus}
+            <div className="w-8 h-8 rounded-full flex items-center justify-center relative overflow-hidden">
+              <CusButton
+                sx={{ borderRadius: 4 }}
+                onClick={() => setIsNote(true)}
               >
-                -
-              </button>
-              <p>{count}</p>
-              <button
-                className="p-1 text-xl font-mono font-bold"
-                onClick={handlePlus}
-              >
-                +
-              </button>
+                📝
+              </CusButton>
+            </div>
+            <div className="pt-[1px] pb-[2px] px-0.5 rounded-full border-2 flex gap-1.5 items-center justify-between">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center relative overflow-hidden">
+                <CusButton sx={{ borderRadius: 4 }} onClick={handleMinus}>
+                  -
+                </CusButton>
+              </div>
+              <div className="">{count}</div>
+              <div className="w-8 h-8 rounded-full flex items-center justify-center relative overflow-hidden">
+                <CusButton sx={{ borderRadius: 4 }} onClick={handlePlus}>
+                  +
+                </CusButton>
+              </div>
             </div>
           </div>
         </div>

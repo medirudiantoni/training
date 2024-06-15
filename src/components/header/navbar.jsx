@@ -2,16 +2,13 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@mui/material";
+import CusButton from "../Button/customStyled";
 
 const NavbarButton = ({ title, to, sticker, onClose }) => {
   const navigate = useNavigate();
   return (
-    <Button
+    <CusButton
       sx={{
-        fontFamily: "inherit",
-        fontSize: "inherit",
-        letterSpacing: "0px",
-        textTransform: "none",
         color: "inherit",
         width: "100%",
         padding: "12px 20px",
@@ -29,7 +26,7 @@ const NavbarButton = ({ title, to, sticker, onClose }) => {
         <p>{title}</p>
       </div>
       <div>{"➡️"}</div>
-    </Button>
+    </CusButton>
   );
 };
 
@@ -49,7 +46,7 @@ const Navbar = ({ onClose }) => {
           </h1>
         </Link>
         <div className="">
-          <Button onClick={onClose}>✖️</Button>
+          <CusButton sx={{ borderRadius: 10, padding: "10px 8px" }} onClick={onClose}>✖️</CusButton>
         </div>
       </div>
       <div className="flex flex-col">

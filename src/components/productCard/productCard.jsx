@@ -1,31 +1,44 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logitech from "../../../public/contents/headset.webp";
-// import Button from "../Button/button";
-import CusButton from "../Button/customButton";
 import { Button } from "@mui/material";
 
 const ProductCard = () => {
   const [isWishListed, setWishListed] = useState(false);
+  const navigate = useNavigate()
   return (
-    <Link to="/product">
-      <Button color="primary" sx={{ fontFamily: 'inherit', letterSpacing: '0px', textTransform: 'none', color: 'inherit', width: 154, height: "fit-content", borderRadius: 10, padding: 2, display: "flex", flexDirection: "column" }}>
-        <div className="w-full aspect-square">
-          <img
-            src={logitech}
-            alt="product"
-            className="w-full h-full object-contain"
-          />
-        </div>
-        <div className="flex flex-col text-start text-black">
-          <h3 className="">Headset gaming</h3>
-          <p className="font-bold mb-2">Rp 500.000,00</p>
-          <div className="flex items-center justify-between">
-            <div className="flex gap-1.5">
-              <p>⭐</p>
-              <p>4.5</p>
-            </div>
-            {/* <div
+    <Button
+      onClick={() => navigate('/product')}
+      color="primary"
+      sx={{
+        fontFamily: "inherit",
+        letterSpacing: "0px",
+        textTransform: "none",
+        color: "inherit",
+        width: 154,
+        height: "fit-content",
+        borderRadius: 10,
+        padding: 2,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <div className="w-full aspect-square">
+        <img
+          src={logitech}
+          alt="product"
+          className="w-full h-full object-contain"
+        />
+      </div>
+      <div className="flex flex-col text-start text-black">
+        <h3 className="">Headset gaming</h3>
+        <p className="font-bold mb-2">Rp 500.000,00</p>
+        <div className="flex items-center justify-between">
+          <div className="flex gap-1.5">
+            <p>⭐</p>
+            <p>4.5</p>
+          </div>
+          {/* <div
               onClick={(e) => {
                 e.stopPropagation()
                 setWishListed(!isWishListed);
@@ -36,10 +49,9 @@ const ProductCard = () => {
             >
               {isWishListed ? "💖" : "🖤"}
             </div> */}
-          </div>
         </div>
-      </Button>
-    </Link>
+      </div>
+    </Button>
   );
 };
 
