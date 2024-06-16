@@ -16,13 +16,26 @@ const ColorButton = styled(CusButton)(({ theme }) => ({
 
 const ProductView = () => {
   const [isProducts, setProducts] = useState([]);
+  const [error, setError] = useState(null);
   const idParams = useParams();
+
   useEffect(() => {
     fetch("http://localhost:5173/data/products.json")
-      .then((res) => res.json())
-      .then((res) => setProducts(res));
+      .then((res) => {
+        if(!res.ok) {
+          throw new Error("Unable to fetch data");
+        }
+        return res.json();
+      })
+      .then((data) => setProducts(data))
+      .catch((err) => setError(err.message))
   }, []);
+
   const product = isProducts.find(pro => pro.id == idParams.productId)
+
+  if (error) {
+    return <div className="w-full h-full text-center pt-20">Error: {error}</div>;
+  }
 
   return (
     <div className="w-full h-full relative pt-14">
