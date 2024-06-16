@@ -15,19 +15,36 @@ const ColorButton = styled(CusButton)(({ theme }) => ({
   },
 }));
 
-const DiscountSet = () => {
+const DiscountSet = ({ onClose }) => {
   return (
-    <div className="absolute z-[101] left-0 bottom-0 w-full h-screen bg-black/40 flex items-end">
-      <div className="w-full h-fit p-5 pb-20 rounded-t-2xl bg-white">
+    <div className="absolute z-[101] left-0 bottom-0 w-full h-screen flex items-end">
+      <div
+        className="absolute left-0 top-0 w-full h-full bg-black/40"
+        onClick={onClose}
+      ></div>
+      <motion.div
+        initial={{ y: 100 }}
+        animate={{ y: 0 }}
+        exit={{ y: 100 }}
+        transition={{ ease: "easeInOut" }}
+        className="w-full h-fit p-5 pb-20 rounded-t-2xl bg-white relative z-10"
+      >
         <h3 className="font-semibold mb-4 pb-2 border-b">Diskon</h3>
-        <TextField id="outlined-basic" label="Outlined" variant="outlined" sx={{ width: "100%", marginBottom: "4px" }} />
-        <ColorButton sx={{ width: "100%", color: "#fff" }}>Terapkan</ColorButton>
-      </div>
+        <TextField
+          id="outlined-basic"
+          label="Kode Promo"
+          variant="outlined"
+          sx={{ width: "100%", marginBottom: "4px" }}
+        />
+        <ColorButton sx={{ width: "100%", color: "#fff" }}>
+          Terapkan
+        </ColorButton>
+      </motion.div>
     </div>
-  )
-}
+  );
+};
 
-const CheckoutInfo = () => {
+const CheckoutInfo = ({ onDisc }) => {
   return (
     <motion.div
       initial={{ y: "100%" }}
@@ -45,7 +62,9 @@ const CheckoutInfo = () => {
           </tr>
           <tr>
             <td>
-              <CusButton variant="text" sx={{ padding: 0 }}>Diskon</CusButton>
+              <CusButton variant="text" sx={{ padding: 0 }} onClick={onDisc}>
+                Diskon
+              </CusButton>
             </td>
             <td className="text-end">0</td>
           </tr>
@@ -66,12 +85,13 @@ const CheckoutInfo = () => {
 
 const Cart = () => {
   const [isInfo, setInfo] = useState(false);
+  const [isDisc, setDisc] = useState(false);
   return (
     <div className="w-full h-full pt-14 bg-slate-200 relative">
       <div className="w-full absolute z-10 bg-slate-100 shadow-lg left-0 bottom-0 ">
         <AnimatePresence mode="wait">
-          {isInfo && <CheckoutInfo />}
-          <DiscountSet />
+          {isInfo && <CheckoutInfo onDisc={() => setDisc(true)} />}
+          {isDisc && <DiscountSet onClose={() => setDisc(false)} />}
         </AnimatePresence>
         <div className="w-full h-full bg-white relative z-10 py-2 px-5 border-t flex flex-col gap-2 items-center justify-between">
           <div className="w-full h-full flex items-center justify-between gap-2">

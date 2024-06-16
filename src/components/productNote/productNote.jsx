@@ -12,12 +12,13 @@ const ProductNote = ({ onClose, onDelete, noteData, data }) => {
     onClose();
   };
   return (
-    <div className="absolute z-[101] top-0 left-0 w-full h-full flex items-center justify-center text-start">
+    <div className="absolute z-[101] top-0 left-0 w-full h-full flex items-end justify-center text-start">
       <div
         className="background w-full h-full absolute top-0 left-0 bg-black/60"
         onClick={onClose}
       ></div>
-      <div className="w-5/6 h-fit p-5 rounded-lg bg-white relative z-10">
+      <div className="w-full h-fit p-5 pb-20 rounded-t-2xl bg-white relative z-10">
+      {/* <div className="w-5/6 h-fit p-5 rounded-lg bg-white relative z-10"> */}
         <h2 className="font-bold mb-2">Catatan anda</h2>
         <div>
           <form>

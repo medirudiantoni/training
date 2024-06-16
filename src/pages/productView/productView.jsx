@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import logitech from "../../../public/contents/headset.webp";
 import ProductReview from "../../components/productReview/productReview";
 import CusButton from "../../components/Button/customStyled";
 import { styled } from "@mui/material/styles";
 import { cyan } from "@mui/material/colors";
+import { useParams } from "react-router";
 
 const ColorButton = styled(CusButton)(({ theme }) => ({
   color: theme.palette.getContrastText(cyan[500]),
@@ -14,12 +15,37 @@ const ColorButton = styled(CusButton)(({ theme }) => ({
 }));
 
 const ProductView = () => {
+  const [isProducts, setProducts] = useState([]);
+  const idParams = useParams();
+  useEffect(() => {
+    fetch("http://localhost:5173/data/products.json")
+      .then((res) => res.json())
+      .then((res) => setProducts(res));
+  }, []);
+  const product = isProducts.find(pro => pro.id == idParams.productId)
+
   return (
     <div className="w-full h-full relative pt-14">
       <div className="w-full absolute z-10 bg-slate-100 shadow-lg left-0 bottom-0 py-2 px-5 border-t flex gap-1 items-center justify-between">
-        <CusButton variant="outlined" sx={{ width: "fit-content", padding: "8px 10px", borderRadius: 4 }}>✉️</CusButton>
+        <CusButton
+          variant="outlined"
+          sx={{ width: "fit-content", padding: "8px 10px", borderRadius: 4 }}
+        >
+          ✉️
+        </CusButton>
         <div className="flex-1">
-          <ColorButton variant="contained" sx={{ width: "100%", padding: "8px 10px", borderRadius: 4, color: "#fff", boxShadow: "none" }}>Tambahkan ke Keranjang</ColorButton>
+          <ColorButton
+            variant="contained"
+            sx={{
+              width: "100%",
+              padding: "8px 10px",
+              borderRadius: 4,
+              color: "#fff",
+              boxShadow: "none",
+            }}
+          >
+            Tambahkan ke Keranjang
+          </ColorButton>
         </div>
       </div>
       <div className="w-full h-full overflow-y-auto no-scrollbar relative">
@@ -27,7 +53,7 @@ const ProductView = () => {
           <div className="w-full h-fit pb-5 border-b">
             <div className="w-full aspect-square rounded-lg overflow-hidden">
               <img
-                src={logitech}
+                src={product && product.image}
                 alt="logi tek tek"
                 className="w-full h-full object-contain"
               />
@@ -35,10 +61,10 @@ const ProductView = () => {
             <div className="flex items-center justify-between">
               <div className="flex-1">
                 <div className="">
-                  <h1 className="text-lg">Headset Gaming</h1>
+                  <h1 className="text-lg">{product && product.name}</h1>
                 </div>
                 <div className="mb-2">
-                  <p className="font-bold text-xl">Rp 1.500.000,00</p>
+                  <p className="font-bold text-xl">{product && product.price}</p>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-600 font-medium">
                   <div className="pt-0.5 pb-1 px-2 border rounded-md">
@@ -58,24 +84,13 @@ const ProductView = () => {
           </div>
           <div className="w-full h-fit py-5">
             <h3 className="font-semibold mb-2">Deskripsi Produk</h3>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Asperiores recusandae doloremque consectetur minus eveniet quae
-              dolores cumque exercitationem tempora alias.
-            </p>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Excepturi deserunt ipsa doloribus corrupti ipsam quod iusto.
-              Nostrum cupiditate repudiandae temporibus omnis minus eaque,
-              dolorem, aperiam quas inventore reprehenderit illo praesentium
-              nesciunt culpa maxime laborum?
-            </p>
+            {product && product.description}
           </div>
           <hr />
           <div className="w-full h-fit py-5">
             <h3 className="font-semibold mb-2">Ulasan</h3>
             <div className="w-full h-fit flex flex-col gap-1">
-                <ProductReview>Lorem ipsum dolor sit amet.</ProductReview>
+              <ProductReview>Lorem ipsum dolor sit amet.</ProductReview>
             </div>
           </div>
         </div>

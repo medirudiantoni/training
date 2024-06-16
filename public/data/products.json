@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "Hoodie Futuristic",
+    "price": 600000,
+    "description": "Description of Product 1",
+    "category": "Hoodie",
+    "image": "/contents/blue-jacket.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Jaket Halo WFP",
+    "price": 750000,
+    "description": "Description of Product 2",
+    "category": "jaket parasut",
+    "image": "/contents/green-jacket.jpg"
+  }
+]
