@@ -23,16 +23,16 @@ const ProductCard = ({title, price, image, id}) => {
         flexDirection: "column",
       }}
     >
-      <div className="w-full aspect-square rounded-md overflow-hidden">
+      <div className="w-full aspect-square rounded-md overflow-hidden mb-2">
         <img
           src={image ? image : logitech}
           alt="product"
           className="w-full h-full object-contain"
         />
       </div>
-      <div className="flex flex-col text-start text-black">
-        <h3 className="">{title ? title : "Produk A"}</h3>
-        <p className="font-bold mb-2">Rp {price ? price : "500.000"}</p>
+      <div className="flex flex-col text-black text-center">
+        <h3 className="leading-[1.2] mb-1">{title ? title : "Produk A"}</h3>
+        <p className="font-bold mb-2">${price ? price : "500.000"}</p>
         <div className="flex items-center justify-between">
           {/* <div className="flex gap-1.5">
             <p>⭐</p>

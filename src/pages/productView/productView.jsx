@@ -5,6 +5,7 @@ import CusButton from "../../components/Button/customStyled";
 import { styled } from "@mui/material/styles";
 import { cyan } from "@mui/material/colors";
 import { useParams } from "react-router";
+import { getProducts } from "../../services/products.service";
 
 const ColorButton = styled(CusButton)(({ theme }) => ({
   color: theme.palette.getContrastText(cyan[500]),
@@ -19,16 +20,22 @@ const ProductView = () => {
   const [error, setError] = useState(null);
   const idParams = useParams();
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5173/data/products.json")
+  //     .then((res) => {
+  //       if(!res.ok) {
+  //         throw new Error("Unable to fetch data");
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((data) => setProducts(data))
+  //     .catch((err) => setError(err.message))
+  // }, []);
+
   useEffect(() => {
-    fetch("http://localhost:5173/data/products.json")
-      .then((res) => {
-        if(!res.ok) {
-          throw new Error("Unable to fetch data");
-        }
-        return res.json();
-      })
-      .then((data) => setProducts(data))
-      .catch((err) => setError(err.message))
+    getProducts((data) => {
+      setProducts(data);
+    });
   }, []);
 
   const product = isProducts.find(pro => pro.id == idParams.productId)
